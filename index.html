@@ -14,7 +14,7 @@
       box-sizing: border-box;
     }
     html {
-      font-size: 16px; /* 基础字体大小，可根据需求调整 */
+      font-size: 16px;
     }
     @media (max-width: 768px) {
       html {
@@ -28,21 +28,43 @@
       color: #fff;
       overflow: hidden;
       position: relative;
-      font-size: 1rem; /* 16px */
+      font-size: 1rem;
       line-height: 1.5;
     }
-.header {display: flex;flex-wrap: wrap;align-items: center;justify-content: space-between;padding: 5.5rem 5vw; position: relative;}
-    .ocean-canvas {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     z-index: 1;
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5.5rem 5vw;
+      position: relative;
     }
-    .nav-menu {background: none; border-radius: 0; backdrop-filter: none; padding: 0; display: flex; align-items: center; gap: 0.5rem; position: absolute; left: 5vw; bottom: 1.5rem; z-index: 3;}
+    .ocean-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    .nav-menu {
+      background: none;
+      border-radius: 0;
+      backdrop-filter: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: absolute;
+      left: 5vw;
+      bottom: 1.5rem;
+      z-index: 3;
+    }
     .nav-item {
-      color: rgba(128,128,128,0.75);font-size: 1.1rem;margin: 0 1rem;cursor: pointer;
+      color: rgba(128,128,128,0.75);
+      font-size: 1.1rem;
+      margin: 0 1rem;
+      cursor: pointer;
       transition: all 0.3s ease;
       padding: 0.5rem 1rem;
       border-radius: 30px;
@@ -60,10 +82,23 @@
       font-size: 1.5rem;
       user-select: none;
     }
-
-     .header-icon {position: absolute;right: 3rem;top: 30%;transform: translateY(-50%);height: 9rem;width: 9rem;z-index: 2;display: flex;align-items: center;justify-content: center;}
-     .header-icon img {max-width: 100%;max-height: 100%;object-fit: contain;}
-
+    .header-icon {
+      position: absolute;
+      right: 3rem;
+      top: 30%;
+      transform: translateY(-50%);
+      height: 9rem;
+      width: 9rem;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-icon img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
     h1 {
       position: absolute;
       left: 5vw;
@@ -73,9 +108,14 @@
       text-shadow: 0 0.125rem 0.625rem rgba(0,0,0,0.7);
       user-select: none;
     }
-   .title-bold {font-size: clamp(1.8rem, 4vw, 3.5rem);}
-   .title-normal {font-size: clamp(1rem, 2vw, 1.4rem);margin-top: 0;line-height: 1.2;}
-
+    .title-bold {
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+    }
+    .title-normal {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      margin-top: 0;
+      line-height: 1.2;
+    }
 
     /* 内容区 */
     .content-container {
@@ -103,14 +143,20 @@
       border-left: 1px solid rgba(79, 195, 247, 0.2);
       min-width: 280px;
       font-size: 1rem;
+
+      /* 关键：使用 Grid 让两个卡片等高并充满右侧区域 */
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 1.8rem;
     }
     .stats-card {
       background: rgba(25, 47, 79, 0.5);
       border-radius: 15px;
       padding: 1.8rem;
-      margin-bottom: 1.8rem;
       box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.3);
       border: 1px solid rgba(79, 195, 247, 0.2);
+      display: flex;
+      flex-direction: column;
     }
     .stats-card h3 {
       color: #4FC3F7;
@@ -120,13 +166,11 @@
       align-items: center;
       gap: 0.5rem;
     }
-    .stats-card h3 i {
-      margin-right: 0;
-    }
     .data-highlight {
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap; /* 允许换行 */
+      flex-wrap: wrap;
+      margin-top: auto; /* 将数字卡片推到底部 */
     }
     .highlight-card {
       background: rgba(79, 195, 247, 0.15);
@@ -135,8 +179,7 @@
       text-align: center;
       flex: 1;
       user-select: none;
-      margin-top: 1rem;
-      min-width: 120px; /* 最小宽度确保在大屏上也能显示4个 */
+      min-width: 120px;
     }
     .highlight-value {
       font-size: 2.2rem;
@@ -148,13 +191,16 @@
     .highlight-label {
       font-size: 0.95rem;
       opacity: 0.8;
-      user-select: none;
     }
-    .chart-container {
-      height: 13.75rem; /* 220px */
+
+    /* 饼图容器：完全填充剩余空间 */
+    #species-pie-chart {
+      width: 100%;
+      flex: 1;
+      min-height: 240px; /* 最小高度防止太挤 */
       margin-top: 1rem;
-      min-height: 180px;
     }
+
     #tooltip {
       position: absolute;
       padding: 1.25rem 1.5rem;
@@ -189,7 +235,7 @@
       user-select: none;
     }
 
-    /* Browser 页面表格样式 */
+    /* Browser 页面表格样式（保持不变） */
     .browser-table-container {
       margin-top: 1rem;
       background: rgba(25, 47, 79, 0.5);
@@ -241,111 +287,30 @@
 
     /* 响应式调整 */
     @media (max-width: 1200px) {
-      .map-container {
-        width: 60%;
-      }
-      .home-content {
-        width: 40%;
-      }
-      .search-box {
-        right: 10vw;
-      }
-      .header-icon {
-        right: 6rem;
-        height: 7rem;
-        width: 7rem;
-      }
-      h1 .title-bold {
-        font-size: 2.8rem;
-      }
-      h1 .title-normal {
-        font-size: 1.2rem;
-      }
-      .highlight-card {
-        min-width: 100px; /* 中等屏幕调整最小宽度 */
-      }
+      .map-container { width: 60%; }
+      .home-content { width: 40%; }
+      .header-icon { right: 6rem; height: 7rem; width: 7rem; }
+      h1 .title-bold { font-size: 2.8rem; }
     }
     @media (max-width: 992px) {
-      .content-container {
-        flex-direction: column;
-      }
-      .map-container,
-      .home-content {
-        width: 100%;
-        height: 50vh;
-      }
+      .content-container { flex-direction: column; }
+      .map-container, .home-content { width: 100%; height: 50vh; }
       .home-content {
         border-left: none;
-        border-top: 1px solid rgba(79,195,247,0.2);
+        border-top: 1px solid rgba(79, 195, 247, 0.2);
+        grid-template-rows: none; /* 小屏下恢复纵向排列 */
+        display: block;
       }
-      .nav-menu a {font-size: flex; gap: 0.5rem;}
-      .nav-item {
-        margin: 0 0.8rem;
-        font-size: 1rem;
-        padding: 0.4rem 0.8rem;
-      }
-      .search-box {
-        right: 5vw;
-        bottom: 1rem;
-      }
-      .header-icon {
-        display: none; /* 小屏隐藏装饰图 */
-      }
-      h1 {
-        position: static;
-        transform: none;
-        text-align: center;
-        margin-bottom: 0.5rem;
-      }
-      h1 .title-bold {
-        font-size: 2rem;
-      }
-      h1 .title-normal {
-        font-size: 1rem;
-      }
-      .highlight-card {
-        min-width: 80px; /* 小屏幕调整最小宽度 */
-        padding: 1rem;
-      }
-      .highlight-value {
-        font-size: 1.8rem;
-      }
-    }
-    @media (max-width: 768px) {
-      .data-highlight {
-        gap: 0.8rem;
-      }
-      .highlight-card {
-        flex: 0 0 calc(50% - 0.8rem); /* 小屏幕下显示2列 */
-        min-width: auto;
-      }
-    }
-    @media (max-width: 480px) {
-      .highlight-card {
-        flex: 0 0 100%; /* 超小屏幕下显示1列 */
-      }
+      h1 { position: static; transform: none; text-align: center; margin-bottom: 0.5rem; }
     }
 
-    /* 滚动条 */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: rgba(25,47,79,0.3);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(79,195,247,0.5);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #4FC3F7;
-    }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(25,47,79,0.3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: rgba(79,195,247,0.5); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4FC3F7; }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <div class="header">
     <canvas id="oceanCanvas" class="ocean-canvas"></canvas>
     <div class="nav-menu" role="navigation" aria-label="主导航菜单">
@@ -366,7 +331,6 @@
     </h1>
   </div>
 
-  <!-- Home 页面 -->
   <div id="home" class="content-container" role="main">
     <div class="map-container">
       <div id="world-map" aria-label="世界地图"></div>
@@ -375,12 +339,11 @@
         <div class="spinner"></div>
         <div class="loader-text">Loading samples data...</div>
       </div>
-      <!-- 图例 -->
       <div id="legend" style="position:absolute; bottom:20px; right:20px; background:rgba(25,47,79,0.85); padding:15px; border-radius:10px; backdrop-filter:blur(5px); border:1px solid rgba(79,195,247,0.3); z-index:10;">
         <div style="font-weight:bold; color:#4FC3F7; margin-bottom:8px; font-size:14px;"><i class="fas fa-map-signs"></i> Legend</div>
         <div style="display:flex; align-items:center; margin-bottom:5px;">
           <div style="width:12px; height:12px; background:#FF0000; border-radius:50%; margin-right:8px;"></div>
-          <span style="font-size:13px;">Metagenome/Metaproteome</span>
+          <span style="font-size:13px;">Metagenome</span>
         </div>
         <div style="display:flex; align-items:center;">
           <div style="width:12px; height:12px; background:#FFA500; border-radius:50%; margin-right:8px;"></div>
@@ -391,7 +354,12 @@
     <div class="home-content">
       <div class="stats-card" tabindex="0">
         <h3><i class="fas fa-water"></i> MHACbase</h3>
-        <p style="text-align: justify;">MHACbase is a compact microbiome database for the hypoxic zone of the Yangtze River Estuary in China, currently encompassing both metagenomic and metaproteomic data. We obtained <a href="https://doi.org/10.6084/m9.figshare.25809334" style="color: #4FC3F7; text-decoration: none; font-weight: bold; padding: 2px 4px; border-radius: 3px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(79,195,247,0.2)'" onmouseout="this.style.background='transparent'"> 4,670,825 non-redundant genes and 1,559 species-level genomes</a> above medium quality from 1.31 Tbp metagenome data.</p>
+        <p style="text-align: justify;">
+        MHACbase is a compact microbiome database focusing on the hypoxic zone of the Yangtze River Estuary, China, and currently integrates amplicon, metagenomic, metatranscriptomic, and metaproteomic datasets. The amplicon dataset emphasizes microbial diversity and covers China coastal regions, comprising a total of 1,194 samples. The metagenomic component reveals the functional potential of microbial communities, yielding <a href="https://doi.org/10.6084/m9.figshare.25809334" style="color: #4FC3F7; text-decoration: none; font-weight: bold; padding: 2px 4px; border-radius: 3px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(79,195,247,0.2)'" onmouseout="this.style.background='transparent'"> 4,670,825 non-redundant protein </a> sequences, and enables the reconstruction of <a href="https://doi.org/10.6084/m9.figshare.25809334" style="color: #4FC3F7; text-decoration: none; font-weight: bold; padding: 2px 4px; border-radius: 3px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(79,195,247,0.2)'" onmouseout="this.style.background='transparent'"> 1,559 species-level genomes </a> of at least medium quality from 103 samples, based on 1.31 Tbp of metagenomic sequencing data. The metatranscriptomic dataset focuses on gene expression of active microorganisms, resulting in the assembly of <a href="https://doi.org/10.6084/m9.figshare.25809334" style="color: #4FC3F7; text-decoration: none; font-weight: bold; padding: 2px 4px; border-radius: 3px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(79,195,247,0.2)'" onmouseout="this.style.background='transparent'"> 1,605,549 contigs </a>.
+
+
+
+ obtained  above medium quality from 1.31 Tbp metagenome data.</p>
         <div class="data-highlight" aria-label="数据高亮">
           <div class="highlight-card" tabindex="0">
             <div id="amplicon-count" class="highlight-value">1194</div>
@@ -402,25 +370,29 @@
             <div class="highlight-label">Metagenome</div>
           </div>
           <div class="highlight-card" tabindex="0">
-            <div id="metaproteome-count" class="highlight-value">33</div>
+            <div id="metatranscriptomic-count" class="highlight-value">33</div>
             <div class="highlight-label">Metatranscriptomic</div>
           </div>
           <div class="highlight-card" tabindex="0">
-            <div id="mag-count" class="highlight-value">15</div>
+            <div id="metaproteome-count" class="highlight-value">15</div>
             <div class="highlight-label">Metaproteome</div>
           </div>
         </div>
       </div>
+
+      <div class="stats-card">
+        <h3><i class="fas fa-chart-pie"></i> Microbiome Composition in East China Sea Hypoxia</h3>
+        <div id="species-pie-chart"></div>
+      </div>
     </div>
   </div>
 
-  <!-- Browser 页面 -->
+  <!-- 其他页面保持不变 -->
   <div id="browser" class="page-content" role="region" aria-label="数据浏览">
     <h2><i class="fas fa-database"></i> Data Browser</h2>
     <div id="browser-tables"></div>
   </div>
 
-  <!-- Download 页面 -->
   <div id="download" class="page-content" role="region" aria-label="下载资源">
     <h2><i class="fas fa-download"></i> Download Resources</h2>
     <p>
@@ -433,16 +405,14 @@
     </p>
   </div>
 
-  <!-- Help 页面 -->
   <div id="help" class="page-content" role="region" aria-label="帮助与支持">
     <h2><i class="fas fa-question-circle"></i> Help & Support</h2>
     <p>Contact ail: tangkai@xmu.edu.cn if you have any problems.</p>
     <p>Ciatation:</p>
     <p>Shujing Liu, Quanrui Chen, Congcong Hou, Changjie Dong, Xuanyun Qiu, Kai Tang. Recovery of 1559 metagenome-assembled genomes from the East China Sea's low-oxygen region. Scientific Data. 2024, 11(994) </p>
-    <p>Shujing Liu, Quanrui Chen, Congcong Hou, Changjie Dong, Xuanyun Qiu, Kai Tang. Organic matter composition fluctuations disrupt free-living bacterial communities more than particle-associated bacterial communities in coastal waters. The Science of The Total Environment. 2024, 949: 174845 </p>
-    <p>Shujing Liu, Congcong Hou, Changjie Dong, Duo Zhao, Quanrui Chen, Jin-Yu Terence Yang, Kai Tang. Integrated multi-omics analyses reveal microbial community resilience to fluctuating low oxygen in the East China Sea. Environmental Research. 2024, 261(2102): 119764 </p>
+    <p>Shujing Liu, Quanrui Chen, Congcong Hou, Changjie Dong, Duo Zhao, Quanrui Chen, Jin-Yu Terence Yang, Kai Tang. Integrated multi-omics analyses reveal microbial community resilience to fluctuating low oxygen in the East China Sea. Environmental Research. 2024, 261(2102): 119764 </p>
     <p>Yu Han, Mu Zhang, Xiaofeng Chen, Weidong Zhai, Ehui Tan, Kai Tang. Transcriptomic evidences for microbial carbon and nitrogen cycles in the deoxygenated seawaters of Bohai Sea. Environment International. 2022, 258: 106889 </p>
-</div>
+  </div>
 
   <div class="footer" aria-label="页脚版权信息">© 2025 MHACbase Database | ONCE | v0.0.1</div>
 
@@ -450,17 +420,16 @@
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // —— 波浪动画 —— //
+      // 波浪动画（保持不变）
       const canvas = document.getElementById('oceanCanvas'),
             ctx = canvas.getContext('2d');
       function resizeCanvas() {
-        // 适应 CSS 大小
         canvas.width = canvas.offsetWidth * window.devicePixelRatio;
         canvas.height = canvas.offsetHeight * window.devicePixelRatio;
         ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
       }
       window.addEventListener('resize', () => {
-        ctx.setTransform(1, 0, 0, 1, 0, 0); // 重置缩放
+        ctx.setTransform(1, 0, 0, 1, 0, 0); 
         resizeCanvas();
       });
       resizeCanvas();
@@ -496,12 +465,69 @@
       }
       animateWaves();
 
-      // —— 数据加载 & 解析 —— //
+      // 饼图初始化
+      function initPieChart() {
+        const chartDom = document.getElementById('species-pie-chart');
+        const myChart = echarts.init(chartDom);
+        const option = {
+          backgroundColor: 'transparent',
+          tooltip: {
+            trigger: 'item',
+            formatter: '{b}: {c}%'
+          },
+          legend: {
+            orient: 'horizontal',
+            bottom: '0',
+            textStyle: { color: '#fff' }
+          },
+          series: [
+            {
+              name: 'Microbiome',
+              type: 'pie',
+              radius: ['40%', '70%'],
+              center: ['50%', '50%'],
+              avoidLabelOverlap: false,
+              itemStyle: {
+                borderRadius: 10,
+                borderColor: '#1a3a5f',
+                borderWidth: 2
+              },
+              label: {
+                show: false,
+                position: 'center'
+              },
+              emphasis: {
+                label: {
+                  show: true,
+                  fontSize: '18',
+                  fontWeight: 'bold',
+                  color: '#4FC3F7'
+                }
+              },
+              labelLine: {
+                show: false
+              },
+              data: [
+  { value: 71.97, name: 'Proteobacteria', itemStyle: { color: '#1F77B4' } }, // 蓝
+  { value: 13.59, name: 'Bacteroidota',   itemStyle: { color: '#FF7F0E' } }, // 橙
+  { value: 9.72,  name: 'Actinobacteriota', itemStyle: { color: '#2CA02C' } }, // 绿
+  { value: 1.39,  name: 'Cyanobacteria', itemStyle: { color: '#17BECF' } }, // 青
+  { value: 100-71.97-13.59-9.72-1.39, name: 'Others', itemStyle: { color: '#7F7F7F' } } // 灰
+]
+
+            }
+          ]
+        };
+        myChart.setOption(option);
+        window.addEventListener('resize', () => myChart.resize());
+      }
+
+      // 其余地图、数据加载、页面切换等逻辑保持不变
       function loadData(url, type) {
         document.getElementById('loader').style.display = 'flex';
         return fetch(url).then(r => r.ok ? r.text() : Promise.reject(r.statusText))
           .then(txt => parseSampleData(txt))
-          .catch(e => { console.error(e); alert(`加载${type}数据失败`); return [] })
+          .catch(e => { console.error(e); return [] })
           .finally(() => document.getElementById('loader').style.display = 'none');
       }
 
@@ -522,14 +548,11 @@
         return arr;
       }
 
-      // —— 点图层 & Tooltip —— //
       function bindPointLayerEvents(layer, type) {
         const tip = document.getElementById('tooltip');
         layer.on('mousemove', e => {
           if (!e.feature) return;
           const p = e.feature;
-          
-          // 根据数据类型显示不同的tooltip内容
           let tooltipHTML = '';
           if (type === 'samples') {
             tooltipHTML = `
@@ -551,14 +574,12 @@
                 <div><strong>Collection From:</strong> ${p.collection_from || '—'}</div>
               </div>`;
           }
-
           tip.innerHTML = tooltipHTML;
           tip.style.opacity = 1;
           tip.style.left = e.x + 20 + 'px';
           tip.style.top = e.y - 20 + 'px';
         });
         layer.on('mouseout', () => {
-          const tip = document.getElementById('tooltip');
           tip.style.opacity = 0;
         });
       }
@@ -573,9 +594,7 @@
           .active(true);
       }
 
-      // —— 初始化地图 —— //
       function initMap() {
-        // 同时加载两个数据文件
         Promise.all([
           loadData('samples.txt', 'samples'),
           loadData('samples1.txt', 'samples1')
@@ -584,7 +603,7 @@
             id: 'world-map',
             map: new L7.Map({
               center: [122.5, 25.5],
-              zoom: 2,
+              zoom: 4.2,
               minZoom: 3.5,
               maxZoom: 10,
               style: 'dark',
@@ -598,11 +617,9 @@
             { parser: { type: 'rasterTile', tileSize: 256 } }
           );
 
-          // 创建两个点图层，用不同颜色区分
           const sampleLayer = createPointLayer(samplesData, '#FF0000', 'samples');
           const sample1Layer = createPointLayer(samples1Data, '#FFA500', 'samples1');
           
-          // 绑定事件
           bindPointLayerEvents(sampleLayer, 'samples');
           bindPointLayerEvents(sample1Layer, 'samples1');
 
@@ -611,82 +628,59 @@
             scene.addLayer(sampleLayer);
             scene.addLayer(sample1Layer);
           });
-        }).catch(e => {
-          console.error(e);
-          alert('数据加载失败');
         });
       }
 
-      // —— Browser 表格渲染 —— //
       function renderBrowserTables() {
         const ctn = document.getElementById('browser-tables');
         ctn.innerHTML = `
           <div class="browser-table-container">
             <h3><i class="fas fa-map-marker-alt"></i> Sample Overview (samples.txt)</h3>
             <table class="browser-table" id="tb-samples">
-              <thead>
-                <tr>
-                  <th>Sample</th><th>Latitude</th><th>Longitude</th><th>Salinity</th><th>PH</th><th>Dissolved_oxygen</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Sample</th><th>Latitude</th><th>Longitude</th><th>Salinity</th><th>PH</th><th>Dissolved_oxygen</th></tr></thead>
               <tbody></tbody>
             </table>
           </div>
           <div class="browser-table-container">
             <h3><i class="fas fa-map-marker-alt"></i> New Samples Overview (samples1.txt)</h3>
             <table class="browser-table" id="tb-samples1">
-              <thead>
-                <tr>
-                  <th>Station/Sample</th><th>Latitude</th><th>Longitude</th><th>Depth</th><th>Size</th><th>Collection From</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Station/Sample</th><th>Latitude</th><th>Longitude</th><th>Depth</th><th>Size</th><th>Collection From</th></tr></thead>
               <tbody></tbody>
             </table>
           </div>
         `;
 
-        // 加载并显示samples.txt数据
         loadData('samples.txt', 'samples').then(d => {
           const tbody = document.querySelector('#tb-samples tbody');
-          d.slice(0, 917).forEach(r => {
+          d.forEach(r => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-              <td>${r.Samples || ''}</td>
-              <td>${r.latitude}</td>
-              <td>${r.longitude}</td>
-              <td>${r.Salinity || ''}</td>
-              <td>${r.pH || ''}</td>
-              <td>${r.Dissolved_oxygen || ''}</td>
-            `;
+            <td>${r.Samples || ''}</td>
+            <td>${r.latitude}</td>
+            <td>${r.longitude}</td>
+            <td>${r.Salinity || ''}</td>
+            <td>${r.pH || ''}</td>
+            <td>${r.Dissolved_oxygen || ''}</td>`;
             tbody.appendChild(tr);
           });
-        }).catch(e => {
-          console.error(e);
-          alert('samples.txt 数据加载失败');
         });
 
-        // 加载并显示samples1.txt数据
         loadData('samples1.txt', 'samples1').then(d => {
           const tbody = document.querySelector('#tb-samples1 tbody');
-          d.slice(0, 917).forEach(r => {
+          d.forEach(r => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-              <td>${r.samples || ''}</td>
-              <td>${r.latitude}</td>
-              <td>${r.longitude}</td>
-              <td>${r.depth || ''}</td>
-              <td>${r.size || ''}</td>
-              <td>${r.collection_from || ''}</td>
-            `;
+           <td>${r.samples || ''}</td>
+           <td>${r.latitude}</td>
+           <td>${r.longitude}</td>
+           <td>${r.depth || ''}</td>
+           <td>${r.size || ''}</td>
+            <td>${r.collection_from || ''}</td>`;
             tbody.appendChild(tr);
           });
-        }).catch(e => {
-          console.error(e);
-          alert('samples1.txt 数据加载失败');
         });
       }
 
-      // —— 页面切换 & 初始化 —— //
       const navs = document.querySelectorAll('.nav-item'),
             home = document.getElementById('home'),
             pages = document.querySelectorAll('.page-content');
@@ -696,30 +690,20 @@
         pages.forEach(p => p.style.display = 'none');
         navs.forEach(n => n.classList.remove('active'));
         document.querySelector(`.nav-item[data-page="${id}"]`).classList.add('active');
-        if (id === 'home') home.style.display = 'flex';
-        else {
+        if (id === 'home') {
+           home.style.display = 'flex';
+        } else {
           document.getElementById(id).style.display = 'block';
           if (id === 'browser') renderBrowserTables();
         }
       }
 
       navs.forEach(n => n.addEventListener('click', () => showPage(n.dataset.page)));
-      navs.forEach(n => n.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          showPage(e.target.dataset.page);
-        }
-      }));
-
+      
       showPage('home');
       initMap();
-
-      // TODO: initCharts 如果你有图表初始化函数，保留调用；否则可删除
-      if(typeof initCharts === 'function') {
-        initCharts();
-      }
+      initPieChart();
     });
   </script>
-
 </body>
 </html>
